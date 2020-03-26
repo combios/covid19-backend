@@ -9,7 +9,7 @@ This application will manage the APIs to store and process information received 
 
 1. Clone repository
 ```
-git clone https://github.com/wjforero/covid19-support-backend.git
+git clone https://github.com/combios/covid19-support-backend.git
 ```
 2. Install dependencies using `pipenv`
 ```
