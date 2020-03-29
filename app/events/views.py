@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from .models import *
+from .serializers import *
+
+class QuestionnaireResponseViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = QuestionnaireResponse.objects.all()
+    serializer_class = QuestionnaireResponseSerializer

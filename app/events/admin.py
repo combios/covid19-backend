@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import *
+
+@admin.register(QuestionnaireResponse)
+class QuestionnaireResponseAdmin(admin.ModelAdmin):
+    list_display = ('questionnaire','authored',)
+
+@admin.register(QuestionnaireResponseItem)
+class QuestionnaireResponseItemAdmin(admin.ModelAdmin):
+    list_display = ('response','code','value',)

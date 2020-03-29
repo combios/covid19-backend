@@ -5,11 +5,18 @@ The aim of this project is offer different utilities to be used on epidemy manag
 - Different triage levels
 This application will manage the APIs to store and process information received from different surces and is supported for IA models.
 
+## Dependencies - prerequisites
+
+You need a working installation/setup of `postgresql`.
+
+**For Debian/ubuntu:** `sudo apt-get install libpq-dev`
+**For Archlinux:** `sudo pacman -S postgresql postgresql-libs`
+
 ## How to use it (local)?
 
 1. Clone repository
 ```
-git clone https://github.com/wjforero/covid19-support-backend.git
+git clone https://github.com/combios/covid19-support-backend.git
 ```
 2. Install dependencies using `pipenv`
 ```
