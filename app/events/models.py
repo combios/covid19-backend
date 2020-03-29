@@ -1,8 +1,11 @@
 from django.db import models
+from base.models import Patient
+from definitions.models import Questionnaire
 
 class QuestionnaireResponse(models.Model):
-    questionnaire = models.IntegerField()
+    questionnaire = models.ForeignKey(Questionnaire, on_delete=models.CASCADE, related_name="questionnaire")
     authored = models.DateTimeField()
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="questionnaire_responses")
 
     def __str__(self):
         return super().__str__()

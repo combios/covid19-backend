@@ -12,6 +12,6 @@ class QuestionnaireResponseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = QuestionnaireResponse
-        fields = ['id','authored','answers']
+        fields = ['id','patient','authored','answers']
 
 
