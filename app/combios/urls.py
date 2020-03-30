@@ -24,4 +24,5 @@ urlpatterns = [
     path(API_PREFIX+'base/', include('base.urls')),
     path(API_PREFIX+'definitions/', include('definitions.urls')),
     path(API_PREFIX+'events/', include('events.urls')),
+    path(API_PREFIX+'models/', include('models.urls')),
 ]
