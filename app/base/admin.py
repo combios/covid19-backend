@@ -1,6 +1,10 @@
 from django.contrib import admin
 
-from .models import Patient, PatientData
+from .models import Patient, PatientData, CogUser
+
+@admin.register(CogUser)
+class CogUserAdmin(admin.ModelAdmin):
+    list_display = ('cognito_id','username','email')
 
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):

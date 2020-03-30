@@ -23,8 +23,29 @@ git clone https://github.com/combios/covid19-support-backend.git
 pip3 install pipenv
 pipenv install
 ```
-3. Start the server
+3. Configure environment
+```
+export AWS_REGION=XXXX-X
+export AWS_USER_POOL=XXXX-X_XXXXXX
+export AWS_CLIENT_ID=XXXX
+```
+4. Migrations 
+view https://code.djangoproject.com/ticket/22563 for LogEntry.user Fails
+```
+pipenv run app/manage.py migrate
+```
+1. Start the server
 ```
 pipenv run app/manage.py runserver
 ```
-4. Open your admin interface from http://localhost:8000/admin
+6. Open your admin interface from http://localhost:8000/admin
+
+## Lambdas
+```
+# autoconfirm user on preSignUp
+def lambda_handler(event, context):
+    # default confirm user
+    event['response']['autoConfirmUser'] = True
+    # Return to Amazon Cognito
+    return event
+```
