@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_45rno5&3)j7zjdon7ib%dj*irx8n#@+5q_l4qfg$yus4x1al_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # TODO Configure DEBUG from an environment variable (production ready)
 
 ALLOWED_HOSTS = ['covid19-backend-dev.sa-east-1.elasticbeanstalk.com','localhost',]
 
@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'base',
     'definitions',
     'events',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -135,6 +137,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# CORS configuration
+if DEBUG:
+    CORS_ORIGIN_ALLOW_ALL=True
+else: # TODO Get list of valid origins from env variables
+    print("Allowing other hosts")
+    CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+    ]
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
