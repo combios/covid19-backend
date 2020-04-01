@@ -2,16 +2,19 @@ from rest_framework import serializers
 from .models import Questionnaire, QuestionnaireItem
 
 class QuestionnaireItemSerializer(serializers.HyperlinkedModelSerializer):
+    name = serializers.CharField(source='code')
+    type = serializers.CharField(source='item_type')
+    title = serializers.CharField(source='text')
+    choices = serializers.JSONField()
+
     class Meta:
         model = QuestionnaireItem
-        fields = ['code','order','text','item_type','required','max_length',]
+        fields = ['name','order','title','type','required','max_length','choices',]
 
 class QuestionnaireSerializer(serializers.ModelSerializer):
 
-    items = QuestionnaireItemSerializer(many=True, read_only=True)
+    elements = QuestionnaireItemSerializer(source='items', many=True, read_only=True)
 
     class Meta:
         model = Questionnaire
-        fields = ['id','code', 'title', 'description','items']
-
-
+        fields = ['id','code', 'title', 'description','elements']

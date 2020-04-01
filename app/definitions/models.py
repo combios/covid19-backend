@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from jsonfield import JSONField
 
 # An organized collection of questions intended to solicit information from patients, 
 # providers, or other individuals involved in the healthcare domain.
@@ -19,6 +20,7 @@ class QuestionnaireItem(models.Model):
         ('string','string'),
         ('text','text'),
         ('boolean','boolean'),
+        ('radiogroup','radiogroup'),
         ('decimal','decimal'),
         ('integer','integer'),
         ('date','date'),
@@ -31,8 +33,8 @@ class QuestionnaireItem(models.Model):
     text = models.CharField(max_length=512)
     item_type = models.CharField(max_length=12,choices=Q_ITEM_CHOICES)
     required = models.BooleanField()
-    max_length = models.IntegerField()
-    #answer_options = models.CharField(max_length=1024) # In JSON format
+    max_length = models.IntegerField(null=True ,blank=True)
+    choices = JSONField(max_length=1024, null=True ,blank=True ) # JSON Array of options e.g. ["One","Two"]
 
     def __str__(self):
         return self.code+":"+self.item_type
