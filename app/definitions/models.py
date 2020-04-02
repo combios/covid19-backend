@@ -36,6 +36,9 @@ class QuestionnaireItem(models.Model):
     max_length = models.IntegerField(null=True ,blank=True)
     choices = JSONField(max_length=1024, null=True ,blank=True ) # JSON Array of options e.g. ["One","Two"]
 
+    class Meta:
+        ordering = ['order']
+
     def __str__(self):
         return self.code+":"+self.item_type
 
