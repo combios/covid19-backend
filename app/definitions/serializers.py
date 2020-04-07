@@ -6,10 +6,11 @@ class QuestionnaireItemSerializer(serializers.HyperlinkedModelSerializer):
     type = serializers.CharField(source='item_type')
     title = serializers.CharField(source='text')
     choices = serializers.JSONField()
+    isRequired = serializers.BooleanField(source='required')
 
     class Meta:
         model = QuestionnaireItem
-        fields = ['name','order','title','type','required','max_length','choices',]
+        fields = ['name','order','title','type','isRequired','max_length','choices',]
 
 class QuestionnaireSerializer(serializers.ModelSerializer):
 
