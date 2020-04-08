@@ -69,9 +69,7 @@ class QuestionnaireResponseViewSetTest(APITestCase):
                 "q2":"a2"
             }
         }
-        print(reverse('questionnaire_responses-list'))
         response = self.client.post(reverse('questionnaire_responses-list'),data=data, format="json")
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_noanswers(self):
@@ -80,9 +78,7 @@ class QuestionnaireResponseViewSetTest(APITestCase):
             "questionnaire":1,
             "authored": "2020-04-08T00:08:41.585Z",
         }
-        print(reverse('questionnaire_responses-list'))
         response = self.client.post(reverse('questionnaire_responses-list'),data=data, format="json")
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_create_invaliddata(self):
@@ -93,9 +89,5 @@ class QuestionnaireResponseViewSetTest(APITestCase):
             "questionnaire":1,
             "authored": "2020-04-08T00:08:41.585Z",
         }
-        print(reverse('questionnaire_responses-list'))
         response = self.client.post(reverse('questionnaire_responses-list'),data=data, format="json")
-        print(response.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-
-    

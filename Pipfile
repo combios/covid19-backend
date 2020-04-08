@@ -13,6 +13,10 @@ drf-yasg = "*"
 jsonfield = "*"
 
 [dev-packages]
+coverage = "*"
+pylint = "*"
+autopep8 = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.7"
