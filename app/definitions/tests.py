@@ -50,13 +50,15 @@ class QuestionnaireItemTest(TestCase):
 
 class QuestionnaireViewSetTest(APITestCase):
 
-    # def setUp(self):
-    #     self.factory = APIRequestFactory()
-
+    def setUp(self):
+        q = Questionnaire.objects.create(code="Q", title="TEST", description="TEST")
+        q.save()
+        self.questoinnaire = q
+    
     def test_list(self):
         response = self.client.get(reverse('questionnaires-list'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_retrieve(self):
-        response = self.client.get(reverse('questionnaires-detail'), kwargs={'questionnaire_pk':'q'})
+        response = self.client.get(reverse('questionnaires-list')+self.questoinnaire.code+"/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)

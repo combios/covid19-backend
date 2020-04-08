@@ -16,6 +16,9 @@ class QuestionnaireResponseViewSet(mixins.CreateModelMixin,
 
     def create(self, request, *args, **kwargs):
         data = request.data
+        if 'answers' not in request.data.keys() or len(request.data["answers"])<1:
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+            # Change for an exception
         answers = request.data["answers"]
         del data["answers"]
         serializer = self.get_serializer(data=data)
