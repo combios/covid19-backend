@@ -8,7 +8,7 @@ class QuestionnaireResponse(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="questionnaire_responses")
 
     def __str__(self):
-        return super().__str__()
+        return "QuestionnaireResponse:{id}-{authored}".format(id=self.id,authored=self.authored)
 
 class QuestionnaireResponseItem(models.Model):
     response = models.ForeignKey(QuestionnaireResponse, on_delete=models.CASCADE, related_name="answers")
